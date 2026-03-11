@@ -10,4 +10,12 @@ describe("Home page", () => {
 
         expect(root).toBeInTheDocument();
     });
+
+    it("renders the AuthTabs component", () => {
+        render(<Home />);
+
+        // Look for a placeholder text from AuthTabs
+        expect(screen.getByText(/sign in form placeholder/i)).toBeInTheDocument();
+    });
+
 });

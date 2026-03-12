@@ -1,21 +1,17 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
-import Home from "../page";
+import { describe, it, expect, vi } from "vitest";
 
-describe("Home page", () => {
-    it("renders root container", () => {
-        render(<Home />);
+const redirectMock = vi.fn();
 
-        const root = screen.getByTestId("home-root");
+vi.mock("next/navigation", () => ({
+    redirect: redirectMock,
+}));
 
-        expect(root).toBeInTheDocument();
+describe("Home", () => {
+    it("redirects to /auth/sign-in", async () => {
+        const { default: Home } = await import("../page");
+
+        Home();
+
+        expect(redirectMock).toHaveBeenCalledWith("/auth/sign-in");
     });
-
-    it("renders the AuthTabs component", () => {
-        render(<Home />);
-
-        // Look for a placeholder text from AuthTabs
-        expect(screen.getByText(/sign in form placeholder/i)).toBeInTheDocument();
-    });
-
 });

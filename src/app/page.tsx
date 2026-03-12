@@ -1,9 +1,6 @@
-import { AuthTabs } from "@/features/auth/components/AuthTabs";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div data-testid="home-root">
-      <AuthTabs />
-    </div>
-  );
+    redirect("/auth/sign-in");
 }
+

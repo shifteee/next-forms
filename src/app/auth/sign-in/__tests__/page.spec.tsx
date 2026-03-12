@@ -1,33 +1,19 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { vi, describe, it, expect } from "vitest";
 import SignInPage from "../page";
 
+vi.mock("@/features/auth/components/SingInForm", () => {
+    return {
+        default: () => <div data-testid="sign-in-form" />,
+    }
+});
+
 describe("SignInPage", () => {
-    it("renders login, password inputs and submit button", () => {
+    it("renders SignInForm", () => {
         render(<SignInPage />);
 
-        const header = screen.getByRole("heading", {
-            name: /login to your account/i,
-        });
+        const form = screen.getByTestId("sign-in-form");
 
-        const description = screen.getByText(
-            /enter your email below to login to your account/i
-        );
-
-        const loginInput = screen.getByLabelText(/login/i);
-        const passwordInput = screen.getByLabelText(/password/i);
-
-        const button = screen.getByRole("button", {
-            name: /sign in/i,
-        });
-
-        expect(header).toBeInTheDocument();
-        expect(description).toBeInTheDocument();
-
-        expect(loginInput).toBeInTheDocument();
-        expect(passwordInput).toBeInTheDocument();
-
-        expect(button).toBeInTheDocument();
-
+        expect(form).toBeInTheDocument();
     });
 });

@@ -1,4 +1,4 @@
-import { AuthTabs } from "@/src/features/auth/components/AuthTabs";
+import { AuthTabs } from "@/features/auth/components/AuthTabs";
 
 export default function Home() {
   return (

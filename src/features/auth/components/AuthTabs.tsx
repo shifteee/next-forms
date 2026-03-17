@@ -1,39 +1,26 @@
-// src/features/auth/components/AuthTabs.tsx
-"use client";
+"use client"
 
 import * as Tabs from "@radix-ui/react-tabs";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function AuthTabs() {
+    const pathname = usePathname();
+
+    const activeTab =
+        pathname === "/auth/sign-up" ? "sign-up" : "sign-in";
+
     return (
-        <Tabs.Root defaultValue="sign-in" className="w-[400px]">
-            <Tabs.List className="flex border-b mb-4">
-                <Tabs.Trigger
-                    value="sign-in"
-                    className={cn(
-                        "px-4 py-2 border-b-2 border-transparent",
-                        "data-[state=active]:border-blue-500"
-                    )}
-                >
-                    Sign In
+        <Tabs.Root value={activeTab}>
+            <Tabs.List>
+                <Tabs.Trigger value="sign-in" asChild>
+                    <Link href="/auth/sign-in">Sign In</Link>
                 </Tabs.Trigger>
-                <Tabs.Trigger
-                    value="sign-up"
-                    className={cn(
-                        "px-4 py-2 border-b-2 border-transparent",
-                        "data-[state=active]:border-blue-500"
-                    )}
-                >
-                    Sign Up
+
+                <Tabs.Trigger value="sign-up" asChild>
+                    <Link href="/auth/sign-up">Sign Up</Link>
                 </Tabs.Trigger>
             </Tabs.List>
-
-            <Tabs.Content value="sign-in">
-                <div>Sign In Form Placeholder</div>
-            </Tabs.Content>
-            <Tabs.Content value="sign-up">
-                <div>Sign Up Form Placeholder</div>
-            </Tabs.Content>
         </Tabs.Root>
     );
 }

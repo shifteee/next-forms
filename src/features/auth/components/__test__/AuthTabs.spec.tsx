@@ -2,17 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { AuthTabs } from "../AuthTabs";
 
-const mockUsePathname = vi.fn();
-
-vi.mock("next/navigation", () => ({
-    usePathname: () => mockUsePathname(),
-}));
-
 describe("AuthTabs", () => {
     it("activates Sign In tab on /auth/sign-in", () => {
-        mockUsePathname.mockReturnValue("/auth/sign-in");
-
-        render(<AuthTabs />);
+        const $form = render(<AuthTabs activeTab="sign-in" />);
 
         const tab = screen.getByRole("tab", { name: /sign in/i });
 
@@ -20,9 +12,8 @@ describe("AuthTabs", () => {
     });
 
     it("activates Sign Up tab on /auth/sign-up", () => {
-        mockUsePathname.mockReturnValue("/auth/sign-up");
 
-        render(<AuthTabs />);
+        render(<AuthTabs activeTab="sign-up" />);
 
         const tab = screen.getByRole("tab", { name: /sign up/i });
 

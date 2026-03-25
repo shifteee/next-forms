@@ -1,6 +1,8 @@
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
+
+import { routes } from '@/shared/routes';
 
 export default function Home() {
-    redirect("/auth/sign-in");
+    redirect(routes.auth.signIn());
 }
 

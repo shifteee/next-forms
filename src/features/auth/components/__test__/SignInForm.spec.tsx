@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 
-import SignInForm from '../SingInForm';
+import SignInForm from '../SignInForm';
 
 const signIn = vi.fn();
 const authService: IAuthService = {

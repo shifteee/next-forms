@@ -1,12 +1,10 @@
-import { use } from 'react';
 import { AuthTabs } from "@/features/auth/components/AuthTabs";
 
-
-export default function AuthModeLayout({
+export default async function AuthModeLayout({
     children,
     params,
 }: SignPagesProps) {
-    const { mode } = use(params);
+    const { mode } = await params;
 
     return (
         <>

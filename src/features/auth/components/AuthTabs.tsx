@@ -1,34 +1,26 @@
 import Link from 'next/link';
 
 import { routes } from '@/shared/routes';
-import * as Tabs from '@radix-ui/react-tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/ui/tabs';
 
-export function AuthTabs({ activeTab }: { activeTab: AuthMode }) {
-    const { byMode } = routes.auth;
+export async function AuthTabs({ activeTab }: { activeTab: AuthMode }) {
+    const { signIn, signUp } = routes.auth;
 
     return (
-        <Tabs.Root value={activeTab}>
-            <Tabs.List>
-                <Tabs.Trigger value="sign-in" asChild>
+        <Tabs value={activeTab}>
+            <TabsList variant="line">
+                <TabsTrigger value="sign-in" asChild>
                     <Link
-                        href={byMode(activeTab)}
-                        className={`text-center py-2 ${activeTab === 'sign-in'
-                            ? "bg-primary text-white"
-                            : "bg-muted"
-                            }`}
+                        href={signIn()}
                     >Sign In</Link>
-                </Tabs.Trigger>
+                </TabsTrigger>
 
-                <Tabs.Trigger value="sign-up" asChild>
+                <TabsTrigger value="sign-up" asChild>
                     <Link
-                        href={byMode(activeTab)}
-                        className={`text-center py-2 ${activeTab === 'sign-up'
-                            ? "bg-primary text-white"
-                            : "bg-muted"
-                            }`}
+                        href={signUp()}
                     >Sign Up</Link>
-                </Tabs.Trigger>
-            </Tabs.List>
-        </Tabs.Root>
+                </TabsTrigger>
+            </TabsList>
+        </Tabs>
     );
 }

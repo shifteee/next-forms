@@ -1,11 +1,12 @@
-import { use } from 'react';
+import { routes } from '@/shared/routes';
 
 import SignInForm from '@/features/auth/components/SingInForm';
 import SignUpForm from '@/features/auth/components/SignUpForm';
-import { routes } from '@/shared/routes';
 
-export default function ({ params }: Pick<SignPagesProps, 'params'>) {
-    const { mode } = use(params);
+export default async function ({ params }: Pick<SignPagesProps, 'params'>) {
+    const { mode } = await params;
+
+    console.log(routes.auth.byMode(mode), routes.auth.signIn())
 
     if (routes.auth.byMode(mode) === routes.auth.signIn()) {
         return <SignInForm />;

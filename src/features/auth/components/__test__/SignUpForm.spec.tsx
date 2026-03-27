@@ -3,8 +3,10 @@ import { describe, it, expect } from "vitest";
 import SignUpForm from "../SignUpForm";
 
 describe("SignUpForm", () => {
-    it("renders sign up form with inputs and button", () => {
-        render(<SignUpForm />);
+    it("renders sign up form with inputs and button", async () => {
+        const SignUpPage = await SignUpForm();
+
+        render(SignUpPage);
 
         const header = screen.getByRole("heading", {
             name: /create an account/i,

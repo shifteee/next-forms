@@ -1,6 +1,6 @@
 import { routes } from '@/shared/routes';
 
-import SignInForm from '@/features/auth/components/SingInForm';
+import SignInForm from '@/features/auth/components/SignInForm';
 import SignUpForm from '@/features/auth/components/SignUpForm';
 
 export default async function ({ params }: Pick<SignPagesProps, 'params'>) {

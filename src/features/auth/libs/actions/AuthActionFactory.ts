@@ -1,19 +1,37 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+declare type AuthFactoryDeps = {
+    authService: IAuthService,
+    setSession: (user: User) => Promise<void>;
+    redirect: (path: string) => never;
+};
 
-import { SESSION_KEY } from '@/features/auth/static/consts';
+declare type AuthActionType = 'signIn' | 'signUp';
+
 
 export default class AuthActionFactory {
+    private readonly authService: IAuthService;
+    private readonly setSession: (user: User) => Promise<void>;
+    private readonly redirect: (path: string) => never;
     private readonly handlers: Record<AuthActionType, AuthHandler>;
 
-    constructor(private readonly authService: IAuthService) {
+    constructor(deps: AuthFactoryDeps) {
+        this.authService = deps.authService;
+        this.setSession = deps.setSession;
+        this.redirect = deps.redirect;
         this.handlers = {
             signIn: (c) => this.authService.signIn(c),
             signUp: (c) => this.authService.signUp(c),
         };
     }
 
-    create(type: AuthActionType) {
+    createSignIn() {
+        return this.create('signIn');
+    }
+
+    createSignUp() {
+        return this.create('signUp');
+    }
+
+    private create(type: AuthActionType) {
         const handler = this.handlers[type];
 
         if (!handler) {
@@ -34,15 +52,9 @@ export default class AuthActionFactory {
                 throw new Error('Invalid credentials');
             }
 
-            const cookieStore = await cookies();
+            await this.setSession(user);
 
-            cookieStore.set(SESSION_KEY, JSON.stringify(user), {
-                httpOnly: true,
-                sameSite: 'lax',
-                path: '/',
-            });
-
-            redirect('/dashboard');
+            this.redirect('/success');
         };
     }
 }

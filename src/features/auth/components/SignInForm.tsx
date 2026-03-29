@@ -1,6 +1,7 @@
-import { signInAction } from '@/features/auth/server/authAction';
+import signIn from '../server/actions/signIn';
 
 import SignInClientForm from './SignInClientForm';
+
 
 export default async function SignInForm() {
     return (
@@ -12,7 +13,7 @@ export default async function SignInForm() {
                 </p>
             </div>
 
-            <form action={signInAction} className="space-y-4">
+            <form action={signIn} className="space-y-4">
                 <SignInClientForm />
             </form>
         </div>

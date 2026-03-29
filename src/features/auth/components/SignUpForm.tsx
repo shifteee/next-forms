@@ -1,6 +1,4 @@
-import { Button } from "@/ui/button";
-import { Input } from "@/ui/input";
-import { Label } from "@/ui/label";
+import SignInClientForm from './SignUpClientForm';
 
 export default async function SignUpForm() {
     return (
@@ -16,19 +14,7 @@ export default async function SignUpForm() {
             </div>
 
             <form className="space-y-4">
-                <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" required />
-                </div>
-
-                <div className="space-y-2">
-                    <Label htmlFor="password">Password</Label>
-                    <Input id="password" type="password" required />
-                </div>
-
-                <Button className="w-full" type="submit">
-                    Sign Up
-                </Button>
+                <SignInClientForm />
             </form>
         </div>
     );

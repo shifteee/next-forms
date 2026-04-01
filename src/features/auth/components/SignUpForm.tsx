@@ -1,3 +1,4 @@
+import signUp from '@/features/auth/server/actions/signUp';
 import SignInClientForm from './SignUpClientForm';
 
 export default async function SignUpForm() {
@@ -13,7 +14,7 @@ export default async function SignUpForm() {
                 </p>
             </div>
 
-            <form className="space-y-4">
+            <form action={signUp} className="space-y-4">
                 <SignInClientForm />
             </form>
         </div>

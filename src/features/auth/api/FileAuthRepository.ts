@@ -9,12 +9,14 @@ export default class FileAuthRepository implements IAuthRepository {
         return users.find(user => user.email === email) ?? null;
     }
 
-    async createUser(credentials: UserCredentials): Promise<void> {
+    async createUser(credentials: UserCredentials): Promise<UserRecord> {
         const users = await this.readAll();
 
         users.push(credentials);
 
         await this.writeAll(users);
+
+        return credentials;
     }
 
     private async readAll(): Promise<UserRecord[]> {

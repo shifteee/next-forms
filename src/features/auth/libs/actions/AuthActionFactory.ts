@@ -54,7 +54,7 @@ export default class AuthActionFactory {
 
             await this.setSession(user);
 
-            this.redirect('/success');
+            this.redirect('/auth/success');
         };
     }
 }

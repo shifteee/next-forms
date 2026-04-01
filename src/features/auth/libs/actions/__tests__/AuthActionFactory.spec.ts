@@ -29,7 +29,7 @@ describe('AuthActionFactory', () => {
         formData.set('email', 'test@mail.com');
         formData.set('password', '123');
 
-        await expect(action(formData)).rejects.toThrow('/success');
+        await expect(action(formData)).rejects.toThrow('/auth/success');
 
         expect(signIn).toHaveBeenCalled();
         expect(setSession).toHaveBeenCalled();
@@ -43,7 +43,7 @@ describe('AuthActionFactory', () => {
         formData.set('email', 'test@mail.com');
         formData.set('password', '123');
 
-        await expect(action(formData)).rejects.toThrow('/success');
+        await expect(action(formData)).rejects.toThrow('/auth/success');
 
         expect(signUp).toHaveBeenCalled();
         expect(setSession).toHaveBeenCalled();

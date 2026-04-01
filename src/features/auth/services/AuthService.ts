@@ -8,9 +8,9 @@ export default class AuthService implements IAuthService {
             throw new Error('User already exists');
         }
 
-        await this.repository.createUser(credentials);
+        const user = await this.repository.createUser(credentials);
 
-        return { email: credentials.email };
+        return { email: user.email };
     }
 
     async signIn(credentials: UserCredentials): Promise<User | null> {

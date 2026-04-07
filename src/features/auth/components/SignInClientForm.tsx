@@ -4,41 +4,44 @@ import { useState } from 'react';
 
 import { Button } from '@/ui/button';
 import { Input } from '@/ui/input';
-import { Label } from '@/ui/label';
+import { Field, FieldGroup, FieldLabel } from '@/ui/field';
 
 export default function SignInClientForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const asterisks = ''.padEnd(8, String.fromCharCode(42));
     const isDisabled = !email || !password;
 
     return (
-        <>
-            <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+        <FieldGroup>
+            <Field>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
                     id="email"
                     name="email"
                     type="text"
+                    placeholder="Email"
                     required
                     onChange={(e) => setEmail(e.target.value)}
                 />
-            </div>
+            </Field>
 
-            <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+            <Field>
+                <FieldLabel htmlFor="password">Password</FieldLabel>
                 <Input
                     id="password"
                     name="password"
                     type="password"
+                    placeholder={asterisks}
                     required
                     onChange={(e) => setPassword(e.target.value)}
                 />
-            </div>
+            </Field>
 
-            <Button type="submit" className="w-full" disabled={isDisabled}>
+            <Button type="submit" className="w-full cursor-pointer" disabled={isDisabled}>
                 Sign In
             </Button>
-        </>
+        </FieldGroup>
     );
 }

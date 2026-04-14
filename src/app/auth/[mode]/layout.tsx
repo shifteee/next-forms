@@ -1,5 +1,5 @@
-import { AuthTabs } from "@/features/auth/components/AuthTabs";
-import { Card, CardContent, CardHeader } from "@/ui/card";
+import { AuthTabs } from '@/features/auth/components/AuthTabs';
+import { Card, CardContent, CardHeader } from '@/ui/card';
 
 export default async function AuthModeLayout({
     children,
